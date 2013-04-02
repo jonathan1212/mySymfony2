@@ -1,0 +1,85 @@
+
+update composer
+===============
+php composer.phar update friendsofsymfony/user-bundle
+
+create bundle
+=============
+$ php app/console generate:bundle --namespace=Acme/StoreBundle
+
+
+
+database create
+===============
+
+# app/config/parameters.yml
+parameters:
+    database_driver:    pdo_mysql
+    database_host:      phpmydmin.local
+    database_name:      test_project
+    database_user:      root
+    database_password:  password
+
+
+php app/console doctrine:database:create
+
+
+create entity from scratch (no annotation)
+==========================================
+$ php app/console doctrine:generate:entity --entity="AcmeStoreBundle:Product" --fields="name:string(255) price:float description:text"
+
+$ php app/console doctrine:generate:entity --entity="AcmeStoreBundle:Category" --fields="name:string(255)"
+
+The Entity shortcut name [AcmeStoreBundle:Product]: AcmeStoreBundle:Product
+
+Configuration format (yml, xml, php, or annotation) [annotation]: annotation
+
+
+set getters and setter | entities having defined annotations
+============================================================
+
+	specific entity
+	===============
+	$ php app/console doctrine:generate:entities Acme/StoreBundle/Entity/Product
+	php app/console doctrine:generate:entities AcmeStoreBundle:Product
+
+	specific bundle
+	===============
+	$ php app/console doctrine:generate:entities AcmeStoreBundle
+
+	main bundle
+	===========
+	$ php app/console doctrine:generate:entities Acme
+
+
+update database tables
+======================
+
+
+	php app/console doctrine:schema:update --force
+
+	setup:
+		this is based on the mapping information of your entities
+
+		databse tables updated or remove fields if does not exist in mapping entities
+		datas are not affected
+
+service container
+=================
+
+	show all services and the class for each service
+	================================================
+	$ php app/console container:debug
+
+	private services
+	================
+	$ php app/console container:debug --show-private
+
+	more detailed information about a particular service
+	====================================================
+	$ php app/console container:debug my_mailer
+
+
+
+
+

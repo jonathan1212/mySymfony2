@@ -1,0 +1,20 @@
+acme_task:
+    resource: "@AcmeTaskBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+acme_store:
+    resource: "@AcmeStoreBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+acme_blog:
+    resource: "@AcmeBlogBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+
+acme_demo:
+    resource: "@AcmeDemoBundle/Controller/"
+    type:     annotation
+    prefix:   /demo
